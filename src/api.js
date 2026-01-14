@@ -1,4 +1,4 @@
-const BACKEND_BASE = "http://localhost:8080";
+const BACKEND_BASE = "http://127.0.0.1:8080";
 
 /**
  * Jeśli backend używa cookies/sesji po OAuth2:

@@ -34,7 +34,7 @@ export default function App() {
       onLogout={() => {
         // UWAGA: jeśli backend ma endpoint logout, lepiej go uderzyć.
         // Na szybko: czyścimy cookies przez wejście na backendowy /logout (jeśli masz)
-        window.location.href = "http://localhost:8080/logout";
+        window.location.href = "http://127.0.0.1:8080/logout";
       }}
     />
   );
