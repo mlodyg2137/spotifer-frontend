@@ -14,11 +14,8 @@ export default function App() {
         setStatus("loggedIn");
       })
       .catch((e) => {
-        // 401/403 = niezalogowany -> pokaż ekran logowania
-        if (e?.message === "UNAUTHORIZED") {
-          setStatus("loggedOut");
-        } else {
-          // też pokaż logowanie, ale możesz wyświetlić błąd w konsoli
+        if (e?.message === "UNAUTHORIZED") setStatus("loggedOut");
+        else {
           console.error(e);
           setStatus("loggedOut");
         }
@@ -32,8 +29,6 @@ export default function App() {
     <Dashboard
       me={me}
       onLogout={() => {
-        // UWAGA: jeśli backend ma endpoint logout, lepiej go uderzyć.
-        // Na szybko: czyścimy cookies przez wejście na backendowy /logout (jeśli masz)
         window.location.href = "http://127.0.0.1:8080/logout";
       }}
     />

@@ -17,7 +17,6 @@ export default function LoginScreen() {
           border: "1px solid #ccc",
           background: "white",
           fontWeight: 600,
-          color: "black",
         }}
       >
         Login with Spotify
