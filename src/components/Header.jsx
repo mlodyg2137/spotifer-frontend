@@ -1,19 +1,75 @@
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
+
 export default function Header({ me, onLogout }) {
+
+  const { t } = useTranslation();
+
   return (
-    <header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+    <header
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 16,
+      }}
+    >
       <div>
-        <h1 style={{ margin: 0 }}>Dashboard</h1>
-        <div style={{ opacity: 0.75 }}>
-          {me ? `Zalogowany jako: ${me.displayName ?? me.email ?? me.id ?? "user"}` : ""}
-        </div>
+        <h1 style={{ margin: 0 }}>Spotifer</h1>
       </div>
 
-      <button
-        onClick={onLogout}
-        style={{ padding: "8px 12px", borderRadius: 10, cursor: "pointer", border: "1px solid #ccc" }}
-      >
-        Wyloguj
-      </button>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        {/* Avatar */}
+        {me?.avatarUrl ? (
+          <img
+            src={me.avatarUrl}
+            alt="avatar"
+            width={40}
+            height={40}
+            style={{
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          <div
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: "50%",
+              background: "#ddd",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+            }}
+          >
+            {me?.displayName?.[0]?.toUpperCase() ?? "?"}
+          </div>
+        )}
+
+        {/* Nazwa */}
+        <div style={{ fontWeight: 600 }}>
+          {me?.displayName ?? me?.email ?? "User"}
+        </div>
+
+        {/* Logout */}
+        <button
+          onClick={onLogout}
+          style={{
+            padding: "6px 10px",
+            borderRadius: 8,
+            cursor: "pointer",
+            border: "1px solid #ccc",
+          }}
+        >
+          {t("header.logout")}
+        </button>
+      </div>
+
+      <LanguageSwitcher />
+
     </header>
   );
 }

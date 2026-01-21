@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { apiRecentlyPlayed } from "../api.js";
+import { useTranslation } from "react-i18next";
+
+import { formatDistanceToNow } from 'date-fns';
+import { enUS, pl } from 'date-fns/locale';
 
 export default function RecentlyPlayed({ limit, forceRefresh, refreshKey }) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setLoading(true);
@@ -17,7 +22,7 @@ export default function RecentlyPlayed({ limit, forceRefresh, refreshKey }) {
   }, [limit, forceRefresh, refreshKey]);
 
   return (
-    <Card title="Recently Played">
+    <Card title={t("menu.recentlyPlayed")}>
       {loading && <div>Loading...</div>}
       {err && <div style={{ opacity: 0.8 }}>Błąd: {err}</div>}
 
@@ -33,6 +38,9 @@ export default function RecentlyPlayed({ limit, forceRefresh, refreshKey }) {
 }
 
 function RecentRow({ r }) {
+  const { i18n } = useTranslation();
+  const locale = i18n.language === 'pl' ? pl : enUS;
+
   return (
     <div
       style={{
@@ -60,7 +68,7 @@ function RecentRow({ r }) {
 
         <div style={{ opacity: 0.75, fontSize: 14, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {(r.artistNames ?? []).join(", ")} • {r.albumName}
-          {r.playedAt ? ` • ${r.playedAt}` : ""}
+          {r.playedAt ? ` • ${formatDistanceToNow(new Date(r.playedAt), { addSuffix: true, locale })}` : ""}
         </div>
       </div>
     </div>

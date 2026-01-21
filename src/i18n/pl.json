@@ -1,0 +1,28 @@
+{
+  "menu": {
+    "topTracks": "Top Utwory",
+    "topArtists": "Top Artyści",
+    "recentlyPlayed": "Ostatnio słuchane",
+    "loginScreenText": "Zaloguj się przez Spotify, żeby zobaczyć statystyki.",
+    "loginScreenButton": "Zaloguj przez Spotify"
+  },
+  "controls": {
+    "range": "Zakres",
+    "forceRefresh": "Wymuś odświeżanie danych",
+    "refreshAll": "Odśwież wszystko",
+    "shortTerm": "1 miesiąc",
+    "mediumTerm": "6 miesięcy",
+    "longTerm": "1 rok"
+  },
+  "header": {
+    "logout": "Wyloguj"
+  },
+  "common": {
+    "language": "Język",
+    "loading": "Ładowanie..."
+  },
+  "errors": {
+    "error": "Błąd",
+    "unknown": "Wystąpił błąd"
+  }
+}

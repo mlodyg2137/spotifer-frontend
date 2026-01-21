@@ -1,11 +1,15 @@
 import { startSpotifyLogin } from "../api.js";
+import { useTranslation } from "react-i18next";
 
 export default function LoginScreen() {
+  
+  const { t } = useTranslation();
+
   return (
     <div style={{ padding: 24, maxWidth: 640, margin: "60px auto", fontFamily: "system-ui" }}>
       <h1 style={{ marginBottom: 8 }}>Spotifer</h1>
       <p style={{ opacity: 0.75, marginTop: 0 }}>
-        Zaloguj się przez Spotify, żeby zobaczyć statystyki.
+        {t("menu.loginScreenText")}
       </p>
 
       <button
@@ -17,6 +21,7 @@ export default function LoginScreen() {
           border: "1px solid #ccc",
           background: "white",
           fontWeight: 600,
+          color: "black"
         }}
       >
         Login with Spotify

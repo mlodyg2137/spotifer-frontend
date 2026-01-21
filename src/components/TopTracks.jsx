@@ -1,30 +1,33 @@
 import { useEffect, useState } from "react";
 import { apiTopTracks } from "../api.js";
+import { useTranslation } from "react-i18next";
 
 export default function TopTracks({ limit, timeRange, forceRefresh, refreshKey }) {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setLoading(true);
     setErr(null);
 
     apiTopTracks({ limit, time_range: timeRange, offset: 0, forceRefresh })
-      .then((data) => setItems(Array.isArray(data) ? data : []))
+      // .then((data) => setItems(Array.isArray(data) ? data : []))
+      .then((data) => setItems(Array.isArray(data) ? data.sort((a, b) => b.popularity - a.popularity) : []))
       .catch((e) => setErr(String(e.message ?? e)))
       .finally(() => setLoading(false));
   }, [limit, timeRange, forceRefresh, refreshKey]);
 
   return (
-    <Card title="Top Tracks">
-      {loading && <div>Loading...</div>}
-      {err && <div style={{ opacity: 0.8 }}>Błąd: {err}</div>}
+    <Card title={t("menu.topTracks")}>
+      {loading && <div>{t("common.loading")}</div>}
+      {err && <div style={{ opacity: 0.8 }}>{t("errors.error")}: {err}</div>}
 
       {!loading && !err && (
         <div style={{ display: "grid", gap: 10 }}>
           {items.map((t) => (
-            <TrackRow key={`${t.rank}-${t.trackName}`} t={t} />
+            <TrackRow key={`${t.popularity}-${t.trackName}`} t={t} />
           ))}
         </div>
       )}
@@ -45,7 +48,7 @@ function TrackRow({ t }) {
       }}
     >
       <div style={{ width: 28, textAlign: "center", fontWeight: 700, opacity: 0.7 }}>
-        {t.rank}
+        {t.popularity}
       </div>
 
       <img

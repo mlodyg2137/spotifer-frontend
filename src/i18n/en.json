@@ -1,0 +1,28 @@
+{
+  "menu": {
+    "topTracks": "Top Tracks",
+    "topArtists": "Top Artists",
+    "recentlyPlayed": "Recently played",
+    "loginScreenText": "Login via Spotify to check your statistics.",
+    "loginScreenButton": "Login with Spotify"
+  },
+  "controls": {
+    "range": "Range",
+    "forceRefresh": "Force refresh data",
+    "refreshAll": "Refresh all",
+    "shortTerm": "1 month",
+    "mediumTerm": "6 months",
+    "longTerm": "1 year"
+  },
+  "header": {
+    "logout": "Logout"
+  },
+  "common": {
+    "language": "Language",
+    "loading": "Loading..."
+  },
+  "errors": {
+    "error": "Error",
+    "unknown": "Something went wrong"
+  }
+}

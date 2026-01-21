@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export default function Controls({
   limit,
   setLimit,
@@ -7,6 +9,9 @@ export default function Controls({
   setForceRefresh,
   refreshAll,
 }) {
+
+  const { t } = useTranslation();
+
   return (
     <section style={{ padding: 12, border: "1px solid #e5e5e5", borderRadius: 12 }}>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
@@ -23,24 +28,24 @@ export default function Controls({
         </label>
 
         <label>
-          Time range:&nbsp;
+          {t("controls.range")}:&nbsp;
           <select value={timeRange} onChange={(e) => setTimeRange(e.target.value)} style={{ padding: 6 }}>
-            <option value="short_term">short_term</option>
-            <option value="medium_term">medium_term</option>
-            <option value="long_term">long_term</option>
+            <option value="short_term">{t("controls.shortTerm")}</option>
+            <option value="medium_term">{t("controls.mediumTerm")}</option>
+            <option value="long_term">{t("controls.longTerm")}</option>
           </select>
         </label>
 
         <label style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
           <input type="checkbox" checked={forceRefresh} onChange={(e) => setForceRefresh(e.target.checked)} />
-          forceRefresh
+          {t("controls.forceRefresh")}
         </label>
 
         <button
           onClick={refreshAll}
           style={{ padding: "8px 12px", borderRadius: 10, cursor: "pointer", border: "1px solid #ccc" }}
         >
-          Odśwież wszystko
+          {t("controls.refreshAll")}
         </button>
       </div>
     </section>

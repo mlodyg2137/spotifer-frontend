@@ -12,7 +12,7 @@ export default function Dashboard({ me, onLogout }) {
   const [refreshKey, setRefreshKey] = useState(0);
 
   return (
-    <div style={{ padding: 24, maxWidth: 1100, margin: "0 auto", fontFamily: "system-ui" }}>
+    <div style={{ padding: 24, margin: "0 auto", width: "90vw", fontFamily: "system-ui" }}>
       <Header me={me} onLogout={onLogout} />
 
       <div style={{ marginTop: 16 }}>

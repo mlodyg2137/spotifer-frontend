@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import LoginScreen from "./components/LoginScreen.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import { apiMe } from "./api.js";
+import { useTranslation } from "react-i18next";
 
 export default function App() {
   const [status, setStatus] = useState("loading"); // loading | loggedOut | loggedIn
   const [me, setMe] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     apiMe()
@@ -22,7 +24,7 @@ export default function App() {
       });
   }, []);
 
-  if (status === "loading") return <div style={{ padding: 24 }}>Loading...</div>;
+  if (status === "loading") return <div style={{ padding: 24 }}>{t("common.loading")}</div>;
   if (status === "loggedOut") return <LoginScreen />;
 
   return (
